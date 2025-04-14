@@ -1,0 +1,2 @@
+server.port=3939
+api.secret.jwtkey="secret"
