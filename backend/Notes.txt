@@ -1,0 +1,4 @@
+- Lombok: Simplifies the process by generating constructors, getters, setters and more automatically using annotations.
+- JWT: Used to generate and validate tokens for authentication and authorization.
+- Jakarta Validation: Used to validate request body and other data.
+- Interceptors: Similar to middleware in Node.js. Used to intercept requests and responses.
