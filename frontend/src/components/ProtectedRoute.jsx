@@ -1,12 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { useUserContext } from "../contexts/useUserContext.jsx";
+import { useCookies } from "react-cookie";
 
 function ProtectedRoute({ children }) {
 
-    const { username, token } = useUserContext();
+    const [cookies] = useCookies(["token"]);
 
     return (
-        username && token ? { children } : <Navigate to="/login" replace={true} />
+        cookies.token ? children : <Navigate to="/login" replace={true} />
     );
 }
 
