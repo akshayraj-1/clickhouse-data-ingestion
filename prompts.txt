@@ -1,0 +1,70 @@
+1. I have got an assignment to make a bidirectional tool for data ingestion between ClickHouse and flat files
+2. Let me clear things:
+   ClickHouse - Its like dbms but for large data, for connection we need jwt (from where and how idk)
+   I have to make a web to act like bridge between flat file to click house and click house to flat file
+   1. click house to flat file
+   - user will select the table and records and convert it to flat file
+   2. flat file to click house
+   - user will upload the csv file and specify the deliminator and i have upload the data to the click house and report for success or failures
+   am i wright? please match the requirements according to the assignment
+
+3. Help me to setup a java project using gradle
+4. Which one is best for creating java project maven or java
+   I have prior knowledge of gradle (just syntax) because I have used in my android projects
+5. Okay I want to keep things simple for now so I will go with gradle for this project
+6. I have looked into the online spring initializer can I setup the spring boot in my existing java project without recreating the whole project
+7. from where I can change the port of the spring boot app
+8. In node we have routes and controllers how to do that in spring boot like I want to setup the index route and print some message to the client
+9. I have made a test controller to put some test routes or mappings
+10. I want ot implement a basic authentication system with jwt please guide me through the steps and dependencies I will need to add
+11. Can I remove spring boot security dependency because its showing a default login screen whenever I am trying to access the api
+12. I have implemented the user login signup using jwt now I want to implement some sort of middleware to check if the user is authenticated or not
+    In node they are called middlewares but how can i do in spring
+13. Okay Interceptors are like middlewares in spring boot
+14. How can i add validation to the request body or user input
+15. Okay but whats the diff between @NotBlank and @NotEmpty in the validation
+16. How can i add exception handler for routes
+17. You are using the dto in the service classes shouldn't we use the dto in the controller classes
+18. Okay got it, but since my project is not big i will use the dto in the service classes as well
+19. Now that i get the gist of the spring boot lets move to my assignment
+    Do you know about ClickHouse?
+20. Great my task is to make bidirectional tool for data ingestion between ClickHouse and flat files
+    means user can transform data from flat files to ClickHouse and vice versa
+    for that I need to create a web based app with interface to select source and destination
+    and way to select columns to ingest
+    I have looked into official library on github but I don't know how to use it
+21. Okay let me see how to use it
+22. The assignment is suggesting to use jwt for accessing the database means to connect with the database
+    user will provide host, port and token to connect to the database but I have looked into the docs and the library
+    the clickhouse do not supports jwt authentication it used username and password
+23. Okay I will use username and password for now
+24. I have found this method in the library when i was looking into it
+    Client.Builder()
+    .addEndpoint(Protocol.HTTP, connectRequest.getHost(), connectRequest.getPort(), isSecure)
+    .setAccessToken("")
+    .build();
+    as you can see the library has method to use access token for database connection
+    but I am confused since the clickhouse do not supports jwt auth
+    whats the use of this
+
+25. So i need to use self hosted clickhouse server
+26. But this also supports username and password authentication
+27. Do i need to create some sort of wrapper around this to support jwt auth
+28. No i don't want to implement that in backend itself, is there any way to do that in the docker instance of the clickhouse
+29. Okay but how can i add a proxy layer that will validate the request before sending it to the clickhouse
+30. Why are you using lua and stuff can you make this more simple
+31. first give me the directory structure
+32. the container crashed and i tried but crashes every time
+33. I have used the updated code but still not working its something with the lua in the nginx config file
+34. I can't check logs because the container is not running
+35. I think the problem is that the proxy pass is passing the request with the auth header
+    how can i remove the auth header from the request before sending it to the clickhouse
+36. token is handled through proxy layer and then automatically proxy passed to clickhouse server with username and password
+    i am using authorization header for token verification may the clickhouse library methods used another format how can i see the request from the library like what are headers and body
+37. I have a question since the connection info like host and port is provided at runtime by the user
+    Suppose I have configured and connected to the clickhouse instance using that info how am I supposed to keep the clickhouse connected instance throughout the user session
+    Do I need to connect to the clickhouse for every request of users except connect request (like getting or uploading records)
+38. Since its not a production project can I maintain sessions (if its not too complicated in springboot framework)
+    My use case is:
+    The assignment suggests to take host, port and jwt from the user on selecting the source as ClickHouse but I think I am going to need these info every time no matter what is the source because I have to connect to the clickhouse either way (because bidirectional data transfer).
+    So I am thinking to use the auth system here once user authenticate with these info they can skip these steps
