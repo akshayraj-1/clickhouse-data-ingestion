@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -22,7 +24,7 @@ public class AuthController {
         try {
             return ResponseEntity.ok(authService.signUp(authRequest));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 
@@ -31,7 +33,7 @@ public class AuthController {
         try {
             return ResponseEntity.ok(authService.login(authRequest));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 

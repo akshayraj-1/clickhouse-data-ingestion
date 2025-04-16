@@ -2,3 +2,4 @@
 - JWT: Used to generate and validate tokens for authentication and authorization.
 - Jakarta Validation: Used to validate request body and other data.
 - Interceptors: Similar to middleware in Node.js. Used to intercept requests and responses.
+- @EnableJpaRepositories: to bind the repository interfaces to this service (static and pre-wired)

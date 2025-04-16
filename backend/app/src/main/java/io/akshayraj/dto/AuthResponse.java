@@ -10,5 +10,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthResponse {
 
     private String token;
+    private long expiresIn;
 
 }

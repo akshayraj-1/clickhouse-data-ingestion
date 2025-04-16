@@ -32,6 +32,12 @@ public class JwtUtil {
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
     }
 
+    public static long getTokenExpiration(String token) {
+        Claims claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
+        Date date = claims.getExpiration();
+        return date == null ? -1 : date.getTime();
+    }
+
     public static <T> T convert(Claims claims, Class<T> clazz) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(claims.get("data").toString(), clazz);

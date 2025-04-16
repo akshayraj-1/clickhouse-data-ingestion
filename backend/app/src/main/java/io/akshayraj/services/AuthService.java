@@ -27,7 +27,7 @@ public class AuthService {
         user.setPassword(authRequest.getPassword());
         userRepository.save(user);
         String token = JwtUtil.generateToken(user);
-        return new AuthResponse(token);
+        return new AuthResponse(token, JwtUtil.getTokenExpiration(token));
     }
 
     public AuthResponse login(AuthRequest authRequest) throws IllegalArgumentException,
@@ -37,7 +37,7 @@ public class AuthService {
             String password = user.get().getPassword();
             if (password.equals(authRequest.getPassword())) {
                 String token = JwtUtil.generateToken(user.get());
-                return new AuthResponse(token);
+                return new AuthResponse(token, JwtUtil.getTokenExpiration(token));
             } else {
                 throw new IllegalArgumentException("Invalid credentials");
             }

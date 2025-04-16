@@ -4,7 +4,6 @@ import io.akshayraj.models.UserModel;
 import io.akshayraj.services.AuthService;
 import io.akshayraj.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
@@ -29,8 +28,8 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
         String header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
-            Jws<Claims> claims = JwtUtil.validateToken(token);
-            UserModel user = JwtUtil.convert(claims.getPayload(), UserModel.class);
+            Claims claims = JwtUtil.validateToken(token).getPayload();
+            UserModel user = JwtUtil.convert(claims, UserModel.class);
             String username = user.getUsername();
             if (authService.getUser(username).isPresent()) {
                 request.setAttribute("username", username);
