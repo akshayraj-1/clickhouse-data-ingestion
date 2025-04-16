@@ -1,4 +1,7 @@
-# ClickHouse Data Ingestion
+# [WIP] ClickHouse Data Ingestion
+
+> [!WARNING]
+> This is a work in progress project. Some feature has been implemented and some are yet to be implemented.
 
 This project is a bidirectional data ingestion tool for [ClickHouse](https://clickhouse.com/) and Flat Files (e.g. `csv`).
 It includes a web based application with simple user interface that that facilitates data ingestion between a ClickHouse database and the Flat File platform.
